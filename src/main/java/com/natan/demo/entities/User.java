@@ -10,17 +10,17 @@ import javax.persistence.Id;
 @Entity
 public class User implements Serializable{
 	
-	private static final long serialVersionUID = 1L;
+	private static final Long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private String name;
 	private String email;
 	private String phone;
 	private String password;
 	
-	public User(int id, String name, String email, String phone, String password) {
+	public User(Long id, String name, String email, String phone, String password) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -64,7 +64,7 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -72,7 +72,7 @@ public class User implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -89,6 +89,8 @@ public class User implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 	
 	
 	
